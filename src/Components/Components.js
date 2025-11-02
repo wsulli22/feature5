@@ -1,0 +1,61 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+import { useState, useEffect } from "react"; //LINE ADDED FOR DYNAMIC AUTH CHECK
+import AuthModule from "./Auth/Auth.js";
+import AuthRegister from "./Auth/AuthRegister.js";
+import AuthLogin from "./Auth/AuthLogin.js"; //LINE ADDED
+import ProtectedRoute from "../Services/ProtectedRoute.js"; //LINE ADDED
+import PublicRoute from "../Services/PublicRoute.js"; //LINE ADDED FOR REVERSE PROTECTION
+import Main from "./Main/MainGood.js";
+import { isAuthenticated } from "./Auth/AuthService.js"; //LINE ADDED
+
+//COMPONENT TO WRAP ROUTES AND PROVIDE DYNAMIC AUTH CHECK
+const AuthRoutes = () => {
+  const location = useLocation(); //LINE ADDED TO TRACK ROUTE CHANGES
+  const [authorized, setAuthorized] = useState(() => isAuthenticated()); //LINE ADDED FOR DYNAMIC STATE WITH INITIAL CHECK
+
+  //EFFECT TO RE-CHECK AUTHENTICATION WHEN ROUTE CHANGES OR COMPONENT MOUNTS
+  useEffect(() => {
+    setAuthorized(isAuthenticated()); //LINE ADDED TO UPDATE AUTH STATUS DYNAMICALLY
+  }, [location]); //LINE ADDED TO RE-CHECK ON ROUTE NAVIGATION
+
+  return (
+    <Routes>
+      {/*PUBLIC ROUTES THAT SHOULD NOT BE ACCESSIBLE WHEN LOGGED IN*/}
+      <Route
+        path="/auth"
+        element={<PublicRoute element={AuthModule} isAuthed={authorized} />}
+      />
+      <Route
+        path="/register"
+        element={<PublicRoute element={AuthRegister} isAuthed={authorized} />}
+      />
+      <Route
+        path="/login"
+        element={<PublicRoute element={AuthLogin} isAuthed={authorized} />}
+      />
+      {/*PROTECTED ROUTE THAT REQUIRES AUTHENTICATION*/}
+      <Route
+        path="/user"
+        element={<ProtectedRoute element={Main} isAuthed={authorized} />}
+      />{" "}
+      <Route path="*" element={<Navigate to="/auth" replace />} />
+    </Routes>
+  );
+};
+
+const Components = () => {
+  return (
+    //CODE ADDED BELLOW BASED ON LECTURE 17 CODE EXAMPLE
+    <Router>
+      <AuthRoutes /> {/*LINE ADDED TO USE DYNAMIC AUTH CHECK WRAPPER*/}
+    </Router>
+  );
+};
+
+export default Components;

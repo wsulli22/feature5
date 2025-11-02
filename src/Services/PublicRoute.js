@@ -1,0 +1,15 @@
+//FILE CODE ADDED BELOW
+import React from "react"; //FROM LECTURE 17 CODE EXAMPLE
+import { Navigate } from "react-router-dom"; //FROM LECTURE 17 CODE EXAMPLE
+
+//COMPONENT TO PROTECT PUBLIC ROUTES FROM AUTHENTICATED USERS
+const PublicRoute = ({ element: Component, isAuthed }) => {
+  //IF USER IS AUTHENTICATED, REDIRECT TO USER DASHBOARD
+  if (isAuthed) return <Navigate to="/user" replace />; //LINE ADDED TO REDIRECT AUTHENTICATED USERS
+
+  //IF USER IS NOT AUTHENTICATED, ALLOW ACCESS TO PUBLIC ROUTE
+  return <Component />; //LINE ADDED TO ALLOW ACCESS FOR UNAUTHENTICATED USERS
+};
+
+export default PublicRoute; //FROM LECTURE 17 CODE EXAMPLE
+
