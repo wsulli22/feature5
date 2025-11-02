@@ -3,13 +3,18 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; //LINE ADDED
 import { logoutUser } from "../Auth/AuthService"; //LINE ADDED
+import Parse from "parse"; //LINE ADDED TO GET CURRENT USER
 
 const MainGood = () => {
   const navigate = useNavigate(); //LINE ADDED
+  const currentUser = Parse.User.current(); //LINE ADDED TO GET LOGGED IN USER
+  const userName = currentUser 
+    ? `${currentUser.get("firstName")} ${currentUser.get("lastName")}`
+    : "Guest"; //LINE ADDED TO DISPLAY USER NAME DYNAMICALLY
 
   return (
     <div>
-      <h1>User: WILL SULLIVAN</h1>
+      <h1>User: {userName}</h1>
 
       <button>
         <Link to="/main">Go back.</Link>
