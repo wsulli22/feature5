@@ -40,6 +40,7 @@ const AuthRegister = () => {
     setAdd(true);
   };
 
+  
   return (
     <div>
       <AuthForm
@@ -48,6 +49,7 @@ const AuthRegister = () => {
         onSubmit={onSubmitHandler}
         isRegister={true}
       />
+      {/* BACK BUTTON ADDED FOR IMPROVED USER NAVIGATION EXPERIENCE */}
       <p><Link to="/login">Already have an account? Login here.</Link></p>
     </div>
   );

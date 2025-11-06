@@ -37,6 +37,7 @@ const AuthLogin = () => {
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       />
+      {/* BACK BUTTON ADDED FOR IMPROVED USER NAVIGATION EXPERIENCE */}
       <p> <Link to="/register">Don't have an account? Create one here.</Link></p>
     </div>
   );

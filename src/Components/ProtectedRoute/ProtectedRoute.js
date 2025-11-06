@@ -9,3 +9,4 @@ const ProtectedRoute = ({ element: Component, isAuthed }) => {
 };
 
 export default ProtectedRoute; //FROM LECTURE 17 CODE EXAMPLE
+

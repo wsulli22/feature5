@@ -21,7 +21,7 @@ export const createUser = (newUser) => {
     });
 };
 
-//FUNCTION ADDED:
+//FUNCTION ADDED TO HANDLE LOGIN
 export const loginUser = (email, password) => {
   return Parse.User.logIn(email, password)
     .then((user) => user)
@@ -30,14 +30,14 @@ export const loginUser = (email, password) => {
     });
 };
 
-//FUNCTION ADDED:
+//FUNCTION ADDED TO HANDLE LOGOUT
 export const logoutUser = () => {
   return Parse.User.logOut().catch((error) => {
     alert(`Error: ${error.message}`);
   });
 };
 
-//FUNCTION ADDED:
+//FUNCTION ADDED TO CHECK IF USER IS AUTHENTICATED
 export const isAuthenticated = () => {
   return Boolean(Parse.User.current());
 };

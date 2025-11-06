@@ -9,8 +9,8 @@
 - Resolved merge conflicts
 
 ### Added (Student B)
-- Made/Used Parse authentication methods
-- Handled Login/Register
+- Made/used Parse authentication methods
+- Handled login/register functionality
 
 ## [0.2.0] - 2025-10-16
   
