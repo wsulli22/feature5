@@ -60,7 +60,7 @@ const AuthForm = ({ user, onChange, onSubmit, isRegister = false }) => {
         </div>
         <div>
           <button type="submit" onSubmit={onSubmit}>
-            Submit
+            {isRegister ? "Sign Up & Create Account" : "Login"}
           </button>
         </div>
       </form>

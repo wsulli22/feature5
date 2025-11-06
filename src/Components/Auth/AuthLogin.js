@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { loginUser } from "./AuthService";
 import AuthForm from "./AuthForm.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ const AuthLogin = () => {
     if (doLogin) {
       loginUser(credentials.email, credentials.password).then((user) => {
         if (user) {
-          alert("Login successful");
           navigate("/user");
         }
         setDoLogin(false);
@@ -33,10 +32,13 @@ const AuthLogin = () => {
   };
 
   return (
-    <AuthForm user={credentials}
-      onChange={onChangeHandler}
-      onSubmit={onSubmitHandler}
-    />
+    <div>
+      <AuthForm user={credentials}
+        onChange={onChangeHandler}
+        onSubmit={onSubmitHandler}
+      />
+      <p> <Link to="/register">Don't have an account? Create one here.</Link></p>
+    </div>
   );
 };
 

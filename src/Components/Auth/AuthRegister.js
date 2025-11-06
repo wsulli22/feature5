@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { createUser } from "./AuthService";
 import AuthForm from "./AuthForm";
+import { Link, useNavigate } from "react-router-dom";
 
 const AuthRegister = () => {
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     firstName: "",
     lastName: "",
@@ -17,14 +19,12 @@ const AuthRegister = () => {
     if (newUser && add) {
       createUser(newUser).then((userCreated) => {
         if (userCreated) {
-          alert(
-            `${userCreated.get("firstName")}, you successfully registered!`
-          );
+          navigate("/user");
         }
         setAdd(false);
       });
     }
-  }, [newUser, add]);
+  }, [newUser, add, navigate]);
 
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -48,6 +48,7 @@ const AuthRegister = () => {
         onSubmit={onSubmitHandler}
         isRegister={true}
       />
+      <p><Link to="/login">Already have an account? Login here.</Link></p>
     </div>
   );
 };

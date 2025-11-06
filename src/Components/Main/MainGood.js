@@ -1,7 +1,7 @@
 //ALL CODE BELOW ADDED (SAME AS LECTURE 17 CODE EXAMPLE "MAINGOOD.JS")
 
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; //LINE ADDED
+import { useNavigate } from "react-router-dom"; //LINE ADDED
 import { logoutUser } from "../Auth/AuthService"; //LINE ADDED
 import Parse from "parse"; //LINE ADDED TO GET CURRENT USER
 
@@ -16,10 +16,6 @@ const MainGood = () => {
     <div>
       <h1>User: {userName}</h1>
 
-      <button>
-        <Link to="/main">Go back.</Link>
-      </button>
-      <br />
       {/*LOGOUT BUTTON ADDED*/}
       <button
         onClick={async () => {

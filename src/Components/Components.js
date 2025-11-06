@@ -6,7 +6,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useState, useEffect } from "react"; //LINE ADDED FOR DYNAMIC AUTH CHECK
-import AuthModule from "./Auth/Auth.js";
 import AuthRegister from "./Auth/AuthRegister.js";
 import AuthLogin from "./Auth/AuthLogin.js"; //LINE ADDED
 import ProtectedRoute from "../Services/ProtectedRoute.js"; //LINE ADDED
@@ -26,11 +25,9 @@ const AuthRoutes = () => {
 
   return (
     <Routes>
+      {/*REDIRECT /auth TO /login*/}
+      <Route path="/auth" element={<Navigate to="/login" replace />} />
       {/*PUBLIC ROUTES THAT SHOULD NOT BE ACCESSIBLE WHEN LOGGED IN*/}
-      <Route
-        path="/auth"
-        element={<PublicRoute element={AuthModule} isAuthed={authorized} />}
-      />
       <Route
         path="/register"
         element={<PublicRoute element={AuthRegister} isAuthed={authorized} />}
@@ -44,7 +41,7 @@ const AuthRoutes = () => {
         path="/user"
         element={<ProtectedRoute element={Main} isAuthed={authorized} />}
       />{" "}
-      <Route path="*" element={<Navigate to="/auth" replace />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 };
