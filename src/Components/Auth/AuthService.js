@@ -1,12 +1,5 @@
 import Parse from "parse";
 
-//PARSE CODE BELOW ADDED
-const APP_ID = process.env.REACT_APP_BACK4APP_APP_ID;
-const JS_KEY = process.env.REACT_APP_BACK4APP_JS_KEY;
-const SERVER_URL = process.env.REACT_APP_BACK4APP_URL;
-Parse.initialize(APP_ID, JS_KEY);
-Parse.serverURL = SERVER_URL;
-
 export const createUser = (newUser) => {
   const user = new Parse.User();
 

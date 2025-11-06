@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { loginUser } from "./AuthService";
+import AuthForm from "./AuthForm.js";
 import { useNavigate } from "react-router-dom";
 
 const AuthLogin = () => {
@@ -21,48 +22,21 @@ const AuthLogin = () => {
     }
   }, [doLogin, credentials, navigate]);
 
-  const onChange = (e) => {
+  const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setcredentials((s) => ({ ...s, [name]: value }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
     setDoLogin(true);
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Email</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={credentials.email}
-            onChange={onChange}
-            placeholder="email"
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <br />
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={onChange}
-            placeholder="password"
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Log in</button>
-        </div>
-      </form>
-    </div>
+    <AuthForm user={credentials}
+      onChange={onChangeHandler}
+      onSubmit={onSubmitHandler}
+    />
   );
 };
 

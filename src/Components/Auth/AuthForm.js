@@ -1,33 +1,38 @@
 import React from "react";
 
-const AuthForm = ({ user, onChange, onSubmit }) => {
+const AuthForm = ({ user, onChange, onSubmit, isRegister = false }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <div>
-          <label>First Name</label>
-          <br />
-          <input
-            type="text"
-            value={user.firstName}
-            onChange={onChange}
-            name="firstName"
-            placeholder="first name"
-            required
-          />
-        </div>
-        <div>
-          <label>Last Name</label>
-          <br />
-          <input
-            type="text"
-            value={user.lastName}
-            onChange={onChange}
-            name="lastName"
-            placeholder="last name"
-            required
-          />
-        </div>{" "}
+        {isRegister ?
+          <>
+            <div>
+              <label>First Name</label>
+              <br />
+              <input
+                type="text"
+                value={user.firstName}
+                onChange={onChange}
+                name="firstName"
+                placeholder="first name"
+                required
+              />
+            </div>
+            <div>
+              <label>Last Name</label>
+              <br />
+              <input
+                type="text"
+                value={user.lastName}
+                onChange={onChange}
+                name="lastName"
+                placeholder="last name"
+                required
+              />
+            </div>{" "}
+          </>
+          : null}
+
         <div>
           <label>Email</label>
           <br />
